@@ -55,48 +55,80 @@
             </div>
 
     </nav>
-
-    <main class="container">
-
-        <p>Follow the form below to edit the information of a selected referee.</p>
-        <div class="col-4">
-            <form action="editref.html" class="row g-3">
-                <div class="form-group">
-                    <label for="editRef">Select Referee to edit</label>
-                    <select class="form-control" id="editRef">
-                        <option>Select Referee</option>
-                        <option>Bipin McReferee</option>
-                        <option>Tom Soccerski</option>
-                        <option>Hillol Goalfry</option>
+    </header>
+    <main>
+        <h1>Detailed Views</h1>
+        <br />
+        <h4>Search referee game history</h4>
+        <div>
+            <form action="#">
+                <div class="dropdown col-4">
+                    <label for="referee">Select Referee: </label>
+                    <select id="referee" name="referee" class="form-select">
+                        <option value="John Smith">John Smith</option>
+                        <option value="Remus Lupin">Remus Lupin</option>
+                        <option value="Bellatrix Lestrange">Bellatrix Lestrange</option>
+                        <option value="Deloitte Consulting">Deloitte Consulting</option>
                     </select>
                 </div>
-                <div class="form-group">
-                    <label for="editName">Name</label>
-                    <input type="text" class="form-control" id="editName" placeholder="Existing name">
+                
+                <div class="button">
+                    <button type="submit" class="btn btn-outline-secondary">Submit</button>
                 </div>
-                <div class="form-group">
-                    <label for="editAge">Age</label>
-                    <input type="number" class="form-control" id="editAge" placeholder="Existing age">
-                </div>
-                <div class="form-group">
-                    <label for="editGrade">Grade</label>
-                    <select class="form-control" id="editGrade">
-                        <option>Existing Grade</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-dark">Save changes</button>
-                    <a class="btn btn-dark" href="referees.html" role="button">Return to List</a>
-                </div>
+                <br />
             </form>
+            <h4>Referee History</h4>
+                <table class="table">
+                    <tr>
+                        <th>Game ID</th>
+                        <th>Location</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                        <th>Game Details</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Lebanon</td>
+                        <td>9/4/2021</td>
+                        <td>Completed</td>
+                        <td><a href="gameDetails.html">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Arlington</td>
+                        <td>9/12/2021</td>
+                        <td>Completed</td>
+                        <td><a href="gameDetails.html">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Indianapolis</td>
+                        <td>10/12/2019</td>
+                        <td>Completed</td>
+                        <td><a href="gameDetails.html">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Fishers</td>
+                        <td>10/19/2019</td>
+                        <td>Accepted</td>
+                        <td><a href="gameDetails.html">View Details</a></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Bloomington</td>
+                        <td>10/24/2019</td>
+                        <td>Tentative</td>
+                        <td><a href="gameDetails.html">View Details</a></td>
+                    </tr>
+                </table>
+                <br />
         </div>
+        <br />
+        <p></p>
+        <form>
 
-
+        </form>
     </main>
 </body>
 
