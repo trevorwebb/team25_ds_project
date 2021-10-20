@@ -1,7 +1,8 @@
+DROP database ref;
 Create database if not exists ref;
 use ref;
 
-create table if not exists REFREE (
+create table if not exists REFEREES (
  ref_ID varchar(8),
  first_name varchar(20) NOT NULL,
  last_name varchar(20) NOT NULL,
@@ -9,25 +10,27 @@ create table if not exists REFREE (
  ref_rating int,
  primary key (ref_ID)
 );
- 
- 
- create table if not exists ASSIGNMENT (
- assign_ID varchar(8),
- game_ID varchar(8) references game(game_id) NOT NULL, 
- ref_ID varchar(8) references referee(ref_id) NOT NULL,
- position varchar(20) NOT NULL,
- assign_status varchar(15) NOT NULL,
- primary key (assign_id)
- );
- 
+
  Create table if not exists GAME (
  game_ID varchar(8),
  game_level varchar(25) NOT NULL,
  game_date date NOT NULL,
  primary key (game_ID)
  );
+ 
+ 
+ create table if not exists ASSIGNMENT (
+ assign_ID varchar(8),
+ game_ID varchar(8) references game(game_id), 
+ ref_ID varchar(8) references referees(ref_id),
+ position varchar(20) NOT NULL,
+ assign_status varchar(15) NOT NULL,
+ primary key (assign_id)
+ );
+ 
 
-insert into REFEREE values
+
+insert into REFEREES values
    ('001','Bipin','Prabhakar','1990-08-17',99),
    ('002','Tom','Gregory','1995-04-23',87),
    ('003','Alan','Dennis','1988-06-15',79);
