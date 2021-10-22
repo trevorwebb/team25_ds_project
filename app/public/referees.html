@@ -7,10 +7,11 @@
 
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
-    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <script src="https://unpkg.com/vue@next"></script>
 
     <title>
-        Reports
+        Referees
     </title>
   </head>
   <body>
@@ -59,7 +60,7 @@
     <div id="pageHeader">
         <h1>Certified Referees</h1>
     </div>
-    <div>
+    <div id="RefApp" class="container">
         <table class="table table-striped table-hover">
             <thead>
                 <tr>
@@ -70,24 +71,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>001</td>
-                    <td>Bipin McReferee</td>
-                    <td>47</td>
-                    <td>4</td>
-                </tr>
-                <tr>
-                    <td>002</td>
-                    <td>Tom Soccerski</td>
-                    <td>29</td>
-                    <td>5</td>
-                </tr>
-                <tr>
-                    <td>003</td>
-                    <td>Hillol Goalfry</td>
-                    <td>40</td>
-                    <td>3</td>
-                </tr>
+              <tr v-for="ref in refs">
+                <td></td>
+                <td>{{ refs.first_name }}</td>
+                <td>{{ refs.date_of_birth }}</td>
+                <td>{{ refs.ref_rating }}</td>
+            </tr>
             </tbody>
         </table>
     </div>
@@ -97,8 +86,7 @@
         <a class="btn btn-dark" href="editref.html" role="button">Edit Referee</a>
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
-    <script src="js/tablesort.min.js"></script>
+  
 
 </body>
 
