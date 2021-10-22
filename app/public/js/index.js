@@ -30,7 +30,7 @@ const ref = {
         postNewRef(evt) {
   
             console.log("Posting!", this.refForm);
-            fetch('api/books/create.php',
+            fetch('api/refs/create.php',
             {
                 method:'POST',
                 body: JSON.stringify(this.refForm),
@@ -54,7 +54,7 @@ const ref = {
 },
     
     created() {
-        this.fetchRefsData();
+        this.fetchRefData();
     }
   }
   
