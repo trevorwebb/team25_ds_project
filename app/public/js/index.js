@@ -2,13 +2,17 @@ const ref = {
     data() {
     return {
         refs: [],
-        refForm : {}
+        refForm : {},
+        person: []
     }
 },
 
-    computed: {
-
-    },
+computed: {
+    prettyBirthday() {
+        return dayjs(this.person.dob.date)
+        .format('D MMM YYYY');
+    }
+},
     methods: {
        
          fetchRefData() {
