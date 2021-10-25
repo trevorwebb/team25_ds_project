@@ -19,10 +19,10 @@ if (isset($_GET['referees'])) {
 $stmt = $db->prepare($sql);
 $stmt->execute($vars);
 
-$books = $stmt->fetchAll();
+$refs = $stmt->fetchAll();
 
 // Step 3: Convert to JSON
-$json = json_encode($books, JSON_PRETTY_PRINT);
+$json = json_encode($refs, JSON_PRETTY_PRINT);
 
 // Step 4: Output
 header('Content-Type: application/json');
