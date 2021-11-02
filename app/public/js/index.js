@@ -21,12 +21,24 @@ const ref = {
             .then( response => response.json() )
             .then( (responseJson) => {
                 console.log(responseJson);
-                this.refs = responseJson;
+                this.referees = responseJson;
             })
             .catch( (err) => {
                 console.error(err);
             })
         },
+
+        fetchGameData() {
+            fetch('/api/games/')
+            .then( response => response.json() )
+            .then( (responseJson) => {
+                console.log(responseJson);
+                this.games = responseJson;
+            })
+            .catch( (err) => {
+                console.error(err);
+            })
+        },   
 
         postNewRef(evt) {
   
@@ -45,7 +57,7 @@ const ref = {
               .then( json => {
                     console.log("Returned from post:", json);
                     // TODO: test a result was returned!
-                    this.refs = json;
+                    this.referees = json;
                 
                 // reset the form
                 this.refForm = {};

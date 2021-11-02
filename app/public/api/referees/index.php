@@ -10,7 +10,7 @@ $vars = [];
 
 if (isset($_GET['referees'])) {
   // This is an example of a parameterized query
-  $sql = 'SELECT * FROM referees WHERE ref_id = ?';
+  $sql = 'SELECT * FROM REFEREES WHERE id = ?';
 
  
   $vars = [ $_GET['referees'] ];
@@ -19,10 +19,11 @@ if (isset($_GET['referees'])) {
 $stmt = $db->prepare($sql);
 $stmt->execute($vars);
 
-$refs = $stmt->fetchAll();
+$referees = $stmt->fetchAll();
 
 // Step 3: Convert to JSON
-$json = json_encode($refs, JSON_PRETTY_PRINT);
+$json = json_encode($referees, JSON_PRETTY_PRINT);
+
 
 // Step 4: Output
 header('Content-Type: application/json');
