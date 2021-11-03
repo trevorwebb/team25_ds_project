@@ -1,7 +1,7 @@
 const ref = {
     data() {
         return {
-            refs: [],
+            referees: [],
             refForm : {},
             person: []
         }

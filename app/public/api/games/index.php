@@ -22,7 +22,7 @@ $stmt->execute($vars);
 $games = $stmt->fetchAll();
 
 // Step 3: Convert to JSON
-$json = json_encode($referees, JSON_PRETTY_PRINT);
+$json = json_encode($games, JSON_PRETTY_PRINT);
 
 
 // Step 4: Output
