@@ -78,50 +78,25 @@
                 <br />
             </form>
             <h4>Referee History</h4>
-                <table class="table">
-                    <tr>
-                        <th>Game ID</th>
-                        <th>Location</th>
-                        <th>Time</th>
-                        <th>Status</th>
-                        <th>Game Details</th>
-                    </tr>
-                    <tr>
-                        <td>1</td>
-                        <td>Lebanon</td>
-                        <td>9/4/2021</td>
-                        <td>Completed</td>
-                        <td><a href="gameDetails.html">View Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Arlington</td>
-                        <td>9/12/2021</td>
-                        <td>Completed</td>
-                        <td><a href="gameDetails.html">View Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Indianapolis</td>
-                        <td>10/12/2019</td>
-                        <td>Completed</td>
-                        <td><a href="gameDetails.html">View Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Fishers</td>
-                        <td>10/19/2019</td>
-                        <td>Accepted</td>
-                        <td><a href="gameDetails.html">View Details</a></td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Bloomington</td>
-                        <td>10/24/2019</td>
-                        <td>Tentative</td>
-                        <td><a href="gameDetails.html">View Details</a></td>
-                    </tr>
-                </table>
+            <div id="RefApp" class="container">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Game ID</th>
+                  <th>Game Level</th>
+                  <th>Game Date</th>
+                </tr>
+              </thead>
+                <tbody>
+                    <tr v-for="game in games">
+                        <td>{{ game.game_ID }}</td>
+                        <td>{{ game.game_level }}</td>
+                        <td>{{ game.game_date }}</td>
+
+                     </tr>
+                </tbody>
+            </table>
+
                 <br />
         </div>
         <br />
