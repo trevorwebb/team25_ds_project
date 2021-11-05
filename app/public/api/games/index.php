@@ -10,7 +10,7 @@ $vars = [];
 
 if (isset($_GET['games'])) {
   // This is an example of a parameterized query
-  $sql = 'SELECT * FROM GAMES WHERE id = ?';
+  $sql = 'SELECT * FROM GAMES WHERE game_ID = ?';
 
  
   $vars = [ $_GET['games'] ];

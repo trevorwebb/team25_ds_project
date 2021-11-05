@@ -1,6 +1,7 @@
 const ref = {
     data() {
         return {
+            games: [],
             referees: [],
             refForm : {},
             person: []
@@ -67,6 +68,7 @@ const ref = {
     
     created() {
         this.fetchRefData();
+        this.fetchGameData();
     }
 }
   
