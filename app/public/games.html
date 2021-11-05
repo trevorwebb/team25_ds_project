@@ -81,12 +81,13 @@
             </form>
             <h4>Referee History</h4>
             <div id="RefApp" class="container">
-            <table class="table">
+            <table class="table table-striped table-hover">
               <thead>
                 <tr>
-                  <th>Game ID</th>
-                  <th>Game Level</th>
-                  <th>Game Date</th>
+                  <th scope="col">Game ID</th>
+                  <th scope="col">Game Level</th>
+                  <th scope="col">Game Date</th>
+                  <th scope="col">Edit/Delete</th>
                 </tr>
               </thead>
                 <tbody>
@@ -94,7 +95,10 @@
                         <td>{{ game.game_ID }}</td>
                         <td>{{ game.game_level }}</td>
                         <td>{{ game.game_date }}</td>
-
+                        <td>
+                          <button type="button" v-on:click="handleEditBook(book)" class="btn btn-outline-secondary btn-sm">Edit</button>
+                          <button type="button" v-on:click="postDeleteBook(book)" class="btn btn-outline-secondary btn-sm">Delete</button>
+                        </td>
                      </tr>
                 </tbody>
             </table>
