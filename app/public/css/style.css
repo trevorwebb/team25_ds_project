@@ -1,3 +1,13 @@
 body {
     background-color: lightgrey;
 }
+.referee {
+    margin: 10px 2px;
+    padding: 4px;
+    border: 1px solid gray;
+    background-color: antiquewhite;
+}
+
+.selected {
+    background-color: burlywood;
+}
