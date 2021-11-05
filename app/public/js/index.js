@@ -63,6 +63,29 @@ const ref = {
                 // reset the form
                 this.refForm = {};
           });
+        },
+        postNewGame(evt) {
+  
+            console.log("Posting!", this.gameForm);
+            fetch('api/games/create.php', {
+                
+                method:'POST',
+                body: JSON.stringify(this.gameForm),
+                headers: {
+                    "Content-Type" : "application/json: charset=utf-8"
+                }
+              })
+               
+
+              .then( response => response.json() )
+              .then( json => {
+                    console.log("Returned from post:", json);
+                    // TODO: test a result was returned!
+                    this.games = json;
+                
+                // reset the form
+                this.gameForm = {};
+          });
         }
     },
     

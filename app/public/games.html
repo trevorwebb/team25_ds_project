@@ -103,8 +103,29 @@
         </div>
         <br />
         <p></p>
-        <form>
-
+        <form class="row g-3 justify-content-center"  v-on:submit.prevent="postNewRef">
+          <div class="col-md-2">
+          </div>
+          <div class="col-md-4">
+            <label for="game_ID" class="form-label">Game ID</label>
+            <input type="text" class="form-control" v-model="gameForm.game_ID" id="game_ID">
+          </div>
+          <div class="col-md-4">
+            <label for="game_leve" class="form-label">Game Level</label>
+            <input type="text" class="form-control" v-model="gameForm.game_level" id="game_level">
+          </div>
+          <div class="col-md-2">
+          </div>
+          <div class="col-md-2">
+          </div>
+          <div class="col-md-4">
+            <label for="game_date" class="form-label">Game Date</label>
+            <input type="text" class="form-control" v-model="gameForm.date_of_birth" id="game_date" placeholder="Ex: 12-Oct-1975">
+          </div>
+          
+          <div class="col-1">
+            <button type="submit" class="btn btn-primary">Add Game</button>
+          </div>
         </form>
     </main>
 
