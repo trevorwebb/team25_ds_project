@@ -96,18 +96,18 @@
                         <td>{{ game.game_level }}</td>
                         <td>{{ game.game_date }}</td>
                         <td>
-                          <button type="button" v-on:click="handleEditBook(book)" class="btn btn-outline-secondary btn-sm">Edit</button>
-                          <button type="button" v-on:click="postDeleteBook(book)" class="btn btn-outline-secondary btn-sm">Delete</button>
+                          <button type="button" v-on:click="handleEditGame(game)" class="btn btn-outline-secondary btn-sm">Edit</button>
+                          <button type="button" v-on:click="postDeleteGame(game)" class="btn btn-outline-secondary btn-sm">Delete</button>
                         </td>
                      </tr>
                 </tbody>
             </table>
 
                 <br />
-        </div>
+
         <br />
         <p></p>
-        <form class="row g-3 justify-content-center"  v-on:submit.prevent="postNewRef">
+        <form class="row g-3 justify-content-center"  v-on:submit.prevent="postGame">
           <div class="col-md-2">
           </div>
           <div class="col-md-4">
@@ -124,13 +124,17 @@
           </div>
           <div class="col-md-4">
             <label for="game_date" class="form-label">Game Date</label>
-            <input type="text" class="form-control" v-model="gameForm.date_of_birth" id="game_date" placeholder="Ex: 12-Oct-1975">
+            <input type="text" class="form-control" v-model="gameForm.game_date" id="game_date">
           </div>
           
           <div class="col-1">
-            <button type="submit" class="btn btn-primary">Add Game</button>
+            <button type="submit" class="btn btn-primary">{{ selectedGame === null ? "Add " : "Edit " }} Book</button>
+              <button type="button" class="btn btn-outline-secondary" 
+                 v-if="selectedBook"
+                 v-on:click="handleResetEdit">Cancel Edit</button>
           </div>
         </form>
+      </div>
     </main>
 
     <script src="js/index.js"></script>
