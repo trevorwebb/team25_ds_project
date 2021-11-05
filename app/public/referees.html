@@ -69,6 +69,7 @@
                     <th scopr="col">Last Name</th>
                     <th scope="col">Age</th>
                     <th scope="col">Grade</th>
+                    <th scope="col">Edit/Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -77,6 +78,10 @@
                 <td>{{ ref.last_name }}</td>
                 <td>{{ ref.date_of_birth }}</td>
                 <td>{{ ref.ref_rating }}</td>
+                <td>
+                  <button type="button" v-on:click="handleEditBook(book)" class="btn btn-outline-secondary btn-sm">Edit</button>
+                  <button type="button" v-on:click="postDeleteBook(book)" class="btn btn-outline-secondary btn-sm">Delete</button>
+                </td>
             </tr>
             </tbody>
         </table>
