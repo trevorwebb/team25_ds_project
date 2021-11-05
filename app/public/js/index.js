@@ -233,6 +233,8 @@ const ref = {
           handleResetEdit() {
               this.selectedGame = null;
               this.gameForm = {};
+              this.selectedRef = null;
+              this.refForm = {};
           },
     },
     
