@@ -35,7 +35,7 @@ $stmt = $db->prepare(
     first_name = ?,
     last_name = ?,
     date_of_birth = ?,
-    ref_rating = ?,
+    ref_rating = ?
   WHERE id = ?'
 );
 
@@ -46,7 +46,6 @@ $stmt->execute([
   $_POST['ref_rating'],
   $_POST['id']
 ]);
-
 // Get auto-generated PK from DB
 // https://www.php.net/manual/en/pdo.lastinsertid.php
 // $pk = $db->lastInsertId();  
@@ -55,4 +54,4 @@ $stmt->execute([
 // Here, instead of giving output, I'm redirecting to the SELECT API,
 // just in case the data changed by entering it
 header('HTTP/1.1 303 See Other');
-header('Location: ../referees/?id=' . $_POST['id']);
+header('Location: ../referees/');
