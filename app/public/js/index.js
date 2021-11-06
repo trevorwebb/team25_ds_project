@@ -109,7 +109,21 @@ const ref = {
           });
         },
 
-
+        fetchGameDetailsData(r) {
+            console.log("Fetching game data for ", r);
+            fetch('/api/gamedetail/?referee=' + r.id)
+            .then( response => response.json() )
+            .then( (responseJson) => {
+                console.log(responseJson);
+                this.games = responseJson;
+            })
+            .catch( (err) => {
+                console.error(err);
+            })
+            .catch( (error) => {
+                console.error(error);
+            });
+        },
         postDeleteRef(r) {  
             if ( !confirm("Are you sure you want to delete " + r.first_name + r.last_name + "from the database?") ) {
                 return;
@@ -239,6 +253,7 @@ const ref = {
     created() {
         this.fetchRefData();
         this.fetchGameData();
+        this.fetchGameDetailsData();
     }
 }
   
