@@ -8,22 +8,22 @@ $db = DbConnection::getConnection();
 $sql = 'SELECT * FROM games';
 $vars = [];
 
-if (isset($_GET['referees'])) {
-$sql = 'Select 
+if (isset($_GET['referee'])) {
+$sql = 'SELECT
 games.game_ID, 
 games.game_level, 
 games.game_date, 
 REFEREES.id from GAMES
 inner join ASSIGNMENT on ASSIGNMENT.game_ID = games.game_ID
 inner join REFEREES on REFEREES.id = ASSIGNMENT.ref_ID
-where id = ?;';
-$vars = [ $_GET['referees'] ];
+WHERE id = ?;';
+$vars = [ $_GET['referee'] ];
 }
 
 $stmt = $db->prepare($sql);
 $stmt->execute($vars);
 
-$offers = $stmt->fetchAll();
+$games = $stmt->fetchAll();
 
 // Step 3: Convert to JSON
 $json = json_encode($games, JSON_PRETTY_PRINT);

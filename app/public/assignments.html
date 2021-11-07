@@ -8,11 +8,11 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
     <link href="css/style.css" rel="stylesheet" type="text/css">
-
+    
     <script src="https://unpkg.com/vue@next"></script>
 
     <title>
-        Games
+        Assignments
     </title>
   </head>
   <body>
@@ -35,7 +35,6 @@
               <a class="dropdown-item" href="games.html">Games List</a>
               <a class="dropdown-item" href="gameDetails.html">Game Details</a>
               <div class="dropdown-divider"></div>
-
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -57,66 +56,78 @@
             </div>
 
     </nav>
-    </header>
-    <main>
-        <h1>Games</h1>
-       
-            </form>
-            <h4></h4>
-            <div id="RefApp" class="container">
-            <table class="table table-striped table-hover">
-              <thead>
+    
+    <div id="pageHeader">
+        <h1>Assignments</h1>
+    </div>
+    <div id="RefApp" class="container">
+        <table class="table table-striped table-hover">
+            <thead>
                 <tr>
-                  <th scope="col">Game ID</th>
-                  <th scope="col">Game Level</th>
-                  <th scope="col">Game Date</th>
-                  <th scope="col">Edit/Delete</th>
+                    <th scope="col">Assign ID</th>
+                    <th scope="col">Game ID</th>
+                    <th scope="col">Referee ID</th>
+                    <th scope="col">Position</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Edit/Delete</th>
                 </tr>
-              </thead>
-                <tbody>
-                    <tr v-for="game in games">
-                        <td>{{ game.game_ID }}</td>
-                        <td>{{ game.game_level }}</td>
-                        <td>{{ game.game_date }}</td>
-                        <td>
-                          <button type="button" v-on:click="handleEditGame(game)" class="btn btn-outline-secondary btn-sm">Edit</button>
-                          <button type="button" v-on:click="postDeleteGame(game)" class="btn btn-outline-secondary btn-sm">Delete</button>
-                        </td>
-                     </tr>
-                </tbody>
-            </table>
-
-                <br />
-
-        <br />
-        <p></p>
-        <form v-on:submit.prevent="postGame">
-
-          <div class="col-md-4">
-            <label for="game_ID" class="form-label">Game ID</label>
-            <input type="text" class="form-control" v-model="gameForm.game_ID" id="game_ID">
+            </thead>
+            <tbody>
+              <tr v-for="assignment in assignments">
+                <td>{{ assignment.assign_ID }}</td>
+                <td>{{ assignment.game_ID }}</td>
+                <td>{{ assignment.ref_ID }}</td>
+                <td>{{ assignment.position }}</td>
+                <td>{{ assignment.assign_status }}</td>
+                <td>
+                  <button type="button" v-on:click="handleEditAssignment(assignment)" class="btn btn-outline-secondary btn-sm">Edit</button>
+                  <button type="button" v-on:click="postDeleteAssignment(aassignment)" class="btn btn-outline-secondary btn-sm">Delete</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="row g-3 justify-content-center">
+          <div class="col-md-2">
+          </div>
+          <div class="col-md-8">
+            <h4>{{ selectedAssignment === null ? "Add " : "Edit " }} Assignment</h4>
+          </div>
+          <div class="col-md-2">
+          </div>
+        </div>
+        <form class="row g-3 justify-content-center"  v-on:submit.prevent="postAssignment">
+          <div class="col-md-2">
           </div>
           <div class="col-md-4">
-            <label for="game_leve" class="form-label">Game Level</label>
-            <input type="text" class="form-control" v-model="gameForm.game_level" id="game_level">
+            <label for="inputGame" class="form-label">Game</label>
+            <input type="text" class="form-control" v-model="assignmentForm.game_ID" id="inputGame">
           </div>
           <div class="col-md-4">
-            <label for="game_date" class="form-label">Game Date</label>
-            <input type="text" class="form-control" v-model="gameForm.game_date" id="game_date">
+            <label for="inputRef" class="form-label">Referee</label>
+            <input type="text" class="form-control" v-model="assignmentForm.ref_ID" id="inputRef">
           </div>
-          
+          <div class="col-md-4">
+            <label for="inputPosition" class="form-label">Position</label>
+            <input type="text" class="form-control" v-model="assignmentForm.position" id="inputPosition">
+          </div>
+          <div class="col-md-4">
+            <label for="inputStatus" class="form-label">Status</label>
+            <input type="text" class="form-control" v-model="assignmentForm.assign_status" id="inputStatus">
+          </div>
+        
           <div class="col-1">
-            <button type="submit" class="btn btn-primary">{{ selectedGame === null ? "Add " : "Edit " }} Game</button>
-              <button type="button" class="btn btn-outline-secondary" 
-                 v-if="selectedGame"
-                 v-on:click="handleResetEdit">Cancel Edit</button>
+            <button type="submit" class="btn btn-primary">{{ selectedAssignment === null ? "Add " : "Edit " }} Assignment</button>
+            <button type="button" class="btn btn-outline-secondary" v-if="selectedAssignment" v-on:click="handleResetEdit">Cancel Edit</button>
           </div>
         </form>
-      </div>
-    </main>
+    </div>
 
+  
     <script src="js/index.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj" crossorigin="anonymous"></script>
+
 </body>
+
+
 
 </html>

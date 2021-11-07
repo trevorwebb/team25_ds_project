@@ -4,9 +4,12 @@ const ref = {
             games: [],
             selectedRef: null,
             gameForm: {},
-            selectGame: null,
+            selectedGame: null,
             referees: [],
             refForm : {},
+            selectedAssignment: null,
+            assignments: [],
+            assignmentForm: {},
             person: []
         }
     },
@@ -25,8 +28,23 @@ const ref = {
                 return;
             }
             this.selectedRef = r;
-            this.referees = [];
-            this.fetchRefData(this.selectedRef);
+            this.games = [];
+            this.fetchGameData2(this.selectedRef);
+        },
+        fetchGameData2(r) {
+            console.log("Fetching game data for ", r);
+            fetch('/api/gamedetail/?referee=' + r.id)
+            .then( response => response.json() )
+            .then( (responseJson) => {
+                console.log(responseJson);
+                this.games = responseJson;
+            })
+            .catch( (err) => {
+                console.error(err);
+            })
+            .catch( (error) => {
+                console.error(error);
+            });
         },
 
         fetchRefData() {
@@ -35,6 +53,17 @@ const ref = {
             .then( (responseJson) => {
                 console.log(responseJson);
                 this.referees = responseJson;
+            })
+            .catch( (err) => {
+                console.error(err);
+            })
+        },
+        fetchAssignmentData() {
+            fetch('/api/assignments/')
+            .then( response => response.json() )
+            .then( (responseJson) => {
+                console.log(responseJson);
+                this.assignments = responseJson;
             })
             .catch( (err) => {
                 console.error(err);
@@ -135,6 +164,88 @@ const ref = {
                 this.handleResetEdit();
               });
           },
+          postAssignment(evt) {
+            console.log ("Test:", this.selectedAssignment);
+          if (this.selectedAssignment) {
+              this.postEditAssignment(evt);
+          } else {
+              this.postNewAssignment(evt);
+          }
+        },
+        
+        postEditAssignment(evt) {
+            this.assignmentForm.id = this.selectedAssignment.id;        
+            
+            console.log("Editing!", this.assignmentForm);
+    
+            fetch('api/assignments/update.php', {
+                method:'POST',
+                body: JSON.stringify(this.assignmentForm),
+                headers: {
+                  "Content-Type": "application/json; charset=utf-8"
+                }
+              })
+              .then( response => response.json() )
+              .then( json => {
+                console.log("Returned from post:", json);
+                // TODO: test a result was returned!
+                this.assignments = json;
+                
+                // reset the form
+                this.handleResetEdit();
+              });
+        },
+
+        postNewAssignment(evt) {
+  
+            console.log("Posting!", this.assignmentForm);
+            fetch('api/assignments/create.php', {
+                
+                method:'POST',
+                body: JSON.stringify(this.assignmentForm),
+                headers: {
+                    "Content-Type" : "application/json: charset=utf-8"
+                }
+              })
+               
+
+              .then( response => response.json() )
+              .then( json => {
+                    console.log("Returned from post:", json);
+                    // TODO: test a result was returned!
+                    this.assignments = json;
+                
+                // reset the form
+                this.assignmentForm = {};
+          });
+        },
+
+
+        postDeleteAssignment(assignment) {  
+            if ( !confirm("Are you sure you want to delete " + assignment.assign_ID + "from the database?") ) {
+                return;
+            }  
+            
+            console.log("Delete!", a);
+    
+            fetch('api/assignments/delete.php', {
+                method:'POST',
+                body: JSON.stringify(a),
+                headers: {
+                  "Content-Type": "application/json; charset=utf-8"
+                }
+              })
+              .then( response => response.json() )
+              .then( json => {
+                console.log("Returned from post:", json);
+                // TODO: test a result was returned!
+              
+                this.assignments = json;
+              
+               // reset the form
+                this.handleResetEdit();
+              });
+          },
 
         selectGame(g) {
             if (g == this.selectedGame) {
@@ -143,6 +254,14 @@ const ref = {
             this.selectedGame = g;
             this.games = [];
             this.fetchGamesData(this.selectedGame);
+        },
+        selectAssignment(a) {
+            if (a == this.selectedAssignment) {
+                return;
+            }
+            this.selectedAssignment = a;
+            this.assignmentss = [];
+            this.fetchAssignmentData(this.selectedAssignment);
         },
         postNewGame(evt) {
   
@@ -235,18 +354,24 @@ const ref = {
               this.gameForm = {};
               this.selectedRef = null;
               this.refForm = {};
+              this.selectedAssignment = null;
+              this.assignmentForm = {};
         },
 
         handleEditRef(ref) {
             this.selectedRef = ref;
             this.refForm = Object.assign({}, this.selectedRef);
         },
+        handleEditAssignment(assignment) {
+            this.selectedAssignment = assignment;
+            this.assignmentForm = Object.assign({}, this.selectedAssignment);
+        },
     },
     
     created() {
         this.fetchRefData();
         this.fetchGameData();
-        this.fetchGameDetailsData();
+        this.fetchAssignmentData();
     }
 }
   
