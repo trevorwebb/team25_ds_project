@@ -221,8 +221,8 @@ const ref = {
         },
 
 
-        postDeleteAssignment(assignment) {  
-            if ( !confirm("Are you sure you want to delete " + assignment.assign_ID + "from the database?") ) {
+        postDeleteAssignment(a) {  
+            if ( !confirm("Are you sure you want to delete this from the database?") ) {
                 return;
             }  
             
@@ -260,7 +260,7 @@ const ref = {
                 return;
             }
             this.selectedAssignment = a;
-            this.assignmentss = [];
+            this.assignments = [];
             this.fetchAssignmentData(this.selectedAssignment);
         },
         postNewGame(evt) {
