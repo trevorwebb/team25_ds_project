@@ -27,8 +27,8 @@ Create table if not exists LEVELS (
  
  create table if not exists ASSIGNMENT (
  assign_ID varchar(8),
- game_ID varchar(8) references game(game_id), 
- ref_ID varchar(8) references referees(ref_id),
+ game_ID varchar(8) references games(game_ID), 
+ ref_ID varchar(8) references referees(id),
  position varchar(20) NOT NULL,
  assign_status varchar(15) NOT NULL,
  primary key (assign_id)
