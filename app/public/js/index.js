@@ -78,7 +78,7 @@ const ref = {
               .then( json => {
                 console.log("Returned from post:", json);
                 // TODO: test a result was returned!
-                this.books = json;
+                this.referees = json;
                 
                 // reset the form
                 this.handleResetEdit();
@@ -88,7 +88,7 @@ const ref = {
         postNewRef(evt) {
   
             console.log("Posting!", this.refForm);
-            fetch('api/refs/create.php', {
+            fetch('api/referees/create.php', {
                 
                 method:'POST',
                 body: JSON.stringify(this.refForm),
@@ -109,31 +109,17 @@ const ref = {
           });
         },
 
-        fetchGameDetailsData(r) {
-            console.log("Fetching game data for ", r);
-            fetch('/api/gamedetail/?referee=' + r.id)
-            .then( response => response.json() )
-            .then( (responseJson) => {
-                console.log(responseJson);
-                this.games = responseJson;
-            })
-            .catch( (err) => {
-                console.error(err);
-            })
-            .catch( (error) => {
-                console.error(error);
-            });
-        },
-        postDeleteRef(r) {  
-            if ( !confirm("Are you sure you want to delete " + r.first_name + r.last_name + "from the database?") ) {
+
+        postDeleteRef(ref) {  
+            if ( !confirm("Are you sure you want to delete " + ref.first_name + ref.last_name + "from the database?") ) {
                 return;
             }  
             
-            console.log("Delete!", r);
+            console.log("Delete!", ref);
     
             fetch('api/referees/delete.php', {
                 method:'POST',
-                body: JSON.stringify(r),
+                body: JSON.stringify(ref),
                 headers: {
                   "Content-Type": "application/json; charset=utf-8"
                 }
@@ -143,7 +129,7 @@ const ref = {
                 console.log("Returned from post:", json);
                 // TODO: test a result was returned!
               
-              this.referees = json;
+                this.referees = json;
               
                // reset the form
                 this.handleResetEdit();
@@ -237,17 +223,24 @@ const ref = {
                 // reset the form
                 this.handleResetEdit();
               });
-          },
+        },
 
-          handleEditGame(game) {
+        handleEditGame(game) {
             this.selectedGame = game;
             this.gameForm = Object.assign({}, this.selectedGame);
         },
         
-          handleResetEdit() {
+        handleResetEdit() {
               this.selectedGame = null;
               this.gameForm = {};
-          },
+              this.selectedRef = null;
+              this.refForm = {};
+        },
+
+        handleEditRef(ref) {
+            this.selectedRef = ref;
+            this.refForm = Object.assign({}, this.selectedRef);
+        },
     },
     
     created() {
