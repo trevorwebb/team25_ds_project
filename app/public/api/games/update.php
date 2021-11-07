@@ -33,7 +33,7 @@ $db = DbConnection::getConnection();
 $stmt = $db->prepare(
   'UPDATE GAMES SET 
     game_level = ?,
-    game_date = ?,
+    game_date = ?
   WHERE game_ID = ?'
 );
 
