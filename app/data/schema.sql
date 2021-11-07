@@ -11,6 +11,12 @@ create table if not exists REFEREES (
  primary key (id)
 );
 
+Create table if not exists LEVELS (
+   game_level varchar(25),
+   num_of_refs varchar(2)
+);
+
+
  Create table if not exists GAMES (
  game_ID varchar(8),
  game_level varchar(25) NOT NULL,
@@ -28,7 +34,10 @@ create table if not exists REFEREES (
  primary key (assign_id)
  );
  
-
+ create table if not exists POSITIONS (
+    position_ID varchar(25),
+    position_name varchar(25)
+ );
 
 insert into REFEREES values
    ('001','Bipin','Prabhakar','1990-08-17',99),
@@ -36,13 +45,23 @@ insert into REFEREES values
    ('003','Alan','Dennis','1988-06-15',79);
    
 insert into GAMES values
-   ('101','1','2021-12-23'),
-   ('102','3','2022-01-15');
+   ('101','Low','2021-12-23'),
+   ('102','Normal','2022-01-15');
    
 insert into ASSIGNMENT values
    ('1000','101','001','Head','Assigned'),
    ('2000','102','002','Head','Tentative'),
    ('2001','102','003','Assistant','Unassigned'),
    ('2002','102','001','Assistant','Tentative');
+insert into LEVELS values
+   ('Low', '1'),
+   ('Normal', '3'),
+   ('High', '4');
+
+insert into POSITIONS values
+   ('1','Head Referee'),
+   ('2', 'Assistant 1'),
+   ('3', 'Assistant 2'),
+   ('4', 'Fourth Official');
 
 
