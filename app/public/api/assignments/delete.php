@@ -31,17 +31,13 @@ $db = DbConnection::getConnection();
 // Step 2: Create & run the query
 // Note the use of parameterized statements to avoid injection
 $stmt = $db->prepare(
-  'UPDATE GAMES SET 
-    game_level = ?,
-    game_date = ?
-  WHERE game_ID = ?'
+  'DELETE FROM ASSIGNMENT WHERE assign_ID = ?'
 );
 
 $stmt->execute([
-  $_POST['game_level'],
-  $_POST['game_date'],
-  $_POST['game_ID']
+  $_POST['assign_ID']
 ]);
+
 // Get auto-generated PK from DB
 // https://www.php.net/manual/en/pdo.lastinsertid.php
 // $pk = $db->lastInsertId();  
@@ -50,4 +46,4 @@ $stmt->execute([
 // Here, instead of giving output, I'm redirecting to the SELECT API,
 // just in case the data changed by entering it
 header('HTTP/1.1 303 See Other');
-header('Location: ../games/');
+header('Location: ../assignments/?a=' . $_POST['assign_ID']);
