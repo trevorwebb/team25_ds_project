@@ -30,6 +30,7 @@ const ref = {
             this.games = [];
             this.fetchGameData2(this.selectedRef);
         },
+        
         fetchGameData2(r) {
             console.log("Fetching game data for ", r);
             fetch('/api/gamedetail/?referee=' + r.id)

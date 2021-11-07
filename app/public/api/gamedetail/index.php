@@ -5,18 +5,18 @@ require 'class/DbConnection.php';
 $db = DbConnection::getConnection();
 
 // Step 2: Create & run the query
-$sql = 'SELECT * FROM games';
+$sql = 'SELECT * FROM GAMES';
 $vars = [];
 
 if (isset($_GET['referee'])) {
 $sql = 'SELECT
-games.game_ID, 
-games.game_level, 
-games.game_date, 
+GAMES.game_ID, 
+GAMES.game_level, 
+GAMES.game_date, 
 REFEREES.id from GAMES
-inner join ASSIGNMENT on ASSIGNMENT.game_ID = games.game_ID
+inner join ASSIGNMENT on ASSIGNMENT.game_ID = GAMES.game_ID
 inner join REFEREES on REFEREES.id = ASSIGNMENT.ref_ID
-WHERE id = ?;';
+WHERE id = ?';
 $vars = [ $_GET['referee'] ];
 }
 
