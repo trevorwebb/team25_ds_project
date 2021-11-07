@@ -4,9 +4,10 @@ const ref = {
             games: [],
             selectedRef: null,
             gameForm: {},
-            selectGame: null,
+            selectedGame: null,
             referees: [],
             refForm : {},
+            assignments: [],
             person: []
         }
     },
@@ -47,6 +48,19 @@ const ref = {
             .then( (responseJson) => {
                 console.log(responseJson);
                 this.games = responseJson;
+            })
+            .catch( (err) => {
+                console.error(err);
+            })
+        },
+
+        fetchAssignmentData(g) {
+            console.log("Fetching assignment data for", g);
+            fetch('/api/assignmentDetail/?game=' + g.game_ID)
+            .then( response => response.json() )
+            .then( (responseJson) => {
+                console.log(responseJson);
+                this.assignments = responseJson;
             })
             .catch( (err) => {
                 console.error(err);
@@ -142,8 +156,18 @@ const ref = {
             }
             this.selectedGame = g;
             this.games = [];
-            this.fetchGamesData(this.selectedGame);
+            this.fetchGameData(this.selectedGame);
         },
+
+        selectGameAssignments(g) {
+            if (g == this.selectedGame) {
+                return;
+            }
+            this.selectedGame = g;
+            this.assignments = [];
+            this.fetchAssignmentData(this.selectedGame);
+        },
+
         postNewGame(evt) {
   
             console.log("Posting!", this.gameForm);
