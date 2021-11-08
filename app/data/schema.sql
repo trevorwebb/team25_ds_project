@@ -20,7 +20,8 @@ Create table if not exists LEVELS (
  Create table if not exists GAMES (
  game_ID int AUTO_INCREMENT,
  game_level varchar(25) NOT NULL,
- game_date date NOT NULL,
+ game_date datetime NOT NULL,
+ game_location varchar(40),
  primary key (game_ID)
  );
  
@@ -45,8 +46,8 @@ insert into REFEREES values
    ('003','Alan','Dennis','1988-06-15',79);
    
 insert into GAMES values
-   ('101','Low','2021-12-23'),
-   ('102','Normal','2022-01-15');
+   ('101','Low','2021-12-23 20:00:00', 'Lancaster'),
+   ('102','Normal','2022-01-15 21:00:00', 'Aurora');
    
 insert into ASSIGNMENT values
    ('1000','101','001','Head','Assigned'),
