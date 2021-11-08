@@ -68,7 +68,7 @@
                 <!-- <div class="col col-8" v-if="selectedRef">
                   <h4>Games for {{ selectedRef.first_name }} {{ selectedRef.last_name }}</h4> -->
 
-                  <button type="button" v-on:click="parseDateGames" class="btn btn-outline-secondary btn-sm">Download as CSV</button>
+                  <button type="button" v-on:click="" class="btn btn-outline-secondary btn-sm">Download as CSV</button>
                     <form v-on:submit.prevent="GameAssignedByDate">
                       <label for="report_referee">Choose a Referee:&nbsp;&nbsp;&nbsp;</label>
                         <select required v-model ="reportForm.id">
@@ -84,21 +84,22 @@
             <table class="table table-striped table-hover">
               <thead>
                 <tr>
-
-                  <th scope="col">Game ID</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">Age</th>
+                  <th scope="col">Referee Grade</th>
                   <th scope="col">Game Level</th>
                   <th scope="col">Game Date</th>
-
+                  <th scope="col">Assign Status</th>
                 </tr>
               </thead>
                 <tbody>
                     <tr v-for="d in daterangeassignments">
-
-
-                        <td>{{ d.game_ID }}</td>
+                        <td>{{ d.ref_name}}</td>
+                        <td>{{ calculateAge(d.date_of_birth) }}</td>
+                        <td>{{ d.ref_rating }}</td>
                         <td>{{ d.game_level }}</td>
                         <td>{{ d.game_date }}</td>
-
+                        <td>{{ d.assign_status }}</td>
                      </tr>
                 </tbody>
             </table>
