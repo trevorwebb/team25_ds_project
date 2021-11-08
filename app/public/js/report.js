@@ -10,6 +10,8 @@ const ref = {
             selectedAssignment: null,
             assignments: [],
             assignmentForm: {},
+            daterangeassignments: [],
+            reportForm: {},
         }
     },
 
@@ -26,6 +28,23 @@ const ref = {
             ageDate = new Date(ageDifMs);
             return Math.abs(ageDate.getUTCFullYear() - 1970);
         },
+        parseDateGames(){   
+            let csvContent = "data:text/csv;charset=utf-8,";
+            csvContent += Object.keys(this.daterangeassignments[0]).join(",")+"\r\n";       
+            this.daterangeassignments.forEach(function(rowObj) {         
+            let row = Object.values(rowObj).join(",");           
+            csvContent += row + "\r\n";
+            });
+            
+            var encodedUri = encodeURI(csvContent);           
+            var link = document.createElement("a");
+            
+            link.setAttribute("href", encodedUri);           
+            link.setAttribute("download", "game_assigned_report.csv");
+            
+            document.body.appendChild(link);         
+            link.click();            
+            },
         
         selectReferee(r) {
             if (r == this.selectedRef) {
@@ -38,7 +57,7 @@ const ref = {
         
         fetchGameData2(r) {
             console.log("Fetching game data for ", r);
-            fetch('/api/gamedetail/?ref=' + r.id)
+            fetch('/api/gamedetail/?referee=' + r.id)
             .then( response => response.json() )
             .then( (responseJson) => {
                 console.log(responseJson);
@@ -240,7 +259,7 @@ const ref = {
 
 
         postDeleteAssignment(a) {  
-            if ( !confirm("Are you sure you want to delete" + a.assign_ID + "from the database?") ) {
+            if ( !confirm("Are you sure you want to delete this from the database?") ) {
                 return;
             }  
             
@@ -346,7 +365,27 @@ const ref = {
               this.postNewGame(evt);
           }
         },
-      
+        GameAssignedByDate(evt){
+          
+            fetch('api/report/game_assignment.php', {
+               method:'POST',
+               body: JSON.stringify(this.reportForm),
+               headers: {
+                 "Content-Type": "application/json; charset=utf-8"
+               }
+             })
+             .then( response => response.json() )
+             .then( json => {
+               console.log("Returned from post:", json);
+               // TODO: test a result was returned!
+               this.daterangeassignments = json;
+               
+             
+             })
+             .catch( err => {
+               alert("Oops, we have an error. Can you try again with correct values.");
+             });
+         }, 
         postDeleteGame(o) {  
             if ( !confirm("Are you sure you want to delete " + o.game_ID + "?") ) {
                 return;
@@ -397,11 +436,12 @@ const ref = {
         },
     },
     
+
     created() {
         this.fetchRefData();
-        this.fetchGameData(); 
+        this.fetchGameData();
         this.fetchAssignmentData();
     }
 }
   
-Vue.createApp(ref).mount('#RefApp');
+Vue.createApp(ref).mount('#reportApp');
