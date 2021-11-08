@@ -14,8 +14,8 @@ try {
             );
 } catch (Exception $e) {
     header($_SERVER["SERVER_PROTOCOL"] . " 400 Bad Request");
-    // print_r($_POST);
-    // echo file_get_contents('php://input');
+    //print_r($_POST);
+    //echo file_get_contents('php://input');
     exit;
 }
 
@@ -46,4 +46,4 @@ $stmt->execute([
 // Here, instead of giving output, I'm redirecting to the SELECT API,
 // just in case the data changed by entering it
 header('HTTP/1.1 303 See Other');
-header('Location: ../assignments/?a=' . $_POST['assign_ID']);
+header('Location: ../assignments/?assignment=' . $_POST['assign_ID']);

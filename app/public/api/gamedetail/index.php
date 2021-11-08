@@ -8,6 +8,7 @@ $db = DbConnection::getConnection();
 $sql = 'SELECT * FROM GAMES';
 $vars = [];
 
+
 if (isset($_GET['referee'])) {
 $sql = 'SELECT
 GAMES.game_ID, 
@@ -18,6 +19,7 @@ inner join ASSIGNMENT on ASSIGNMENT.game_ID = GAMES.game_ID
 inner join REFEREES on REFEREES.id = ASSIGNMENT.ref_ID
 WHERE id = ?';
 $vars = [ $_GET['referee'] ];
+
 }
 
 $stmt = $db->prepare($sql);

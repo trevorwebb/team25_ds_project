@@ -38,7 +38,7 @@ const ref = {
         
         fetchGameData2(r) {
             console.log("Fetching game data for ", r);
-            fetch('/api/gamedetail/?referee=' + r.id)
+            fetch('/api/gamedetail/?ref=' + r.id)
             .then( response => response.json() )
             .then( (responseJson) => {
                 console.log(responseJson);
@@ -240,7 +240,7 @@ const ref = {
 
 
         postDeleteAssignment(a) {  
-            if ( !confirm("Are you sure you want to delete this from the database?") ) {
+            if ( !confirm("Are you sure you want to delete" + a.assign_ID + "from the database?") ) {
                 return;
             }  
             
@@ -399,7 +399,7 @@ const ref = {
     
     created() {
         this.fetchRefData();
-        this.fetchGameData();
+        this.fetchGameData(); 
         this.fetchAssignmentData();
     }
 }
