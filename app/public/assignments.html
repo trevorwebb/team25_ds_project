@@ -96,27 +96,19 @@
           </div>
           <div class="col-md-4">
             <label for="inputGame" class="form-label">Game ID*</label>
-            <select class="form-select" v-model="assignmentForm.game_ID" id="inputGame">
-              <option v-for="game in games" :value="game_ID" required>{{ game.game_ID }}</option>
-            </select>
+            <input type="text" class="form-control" v-model="assignmentForm.game_ID" id="inputGame">
           </div>
           <div class="col-md-4">
             <label for="inputRef" class="form-label">Referee ID*</label>
-            <select class="form-select" v-model="assignmentForm.ref_ID" id="inputRef">
-              <option v-for="ref in referees" :value="id" required>{{ ref.id }}</option>
-            </select>
+            <input type="text" class="form-control" v-model="assignmentForm.ref_ID" id="inputRef">
           </div>
           <div class="col-md-4">
             <label for="inputPosition" class="form-label">Position*</label>
-            <select class="form-select" v-model="assignmentForm.position" id="inputPosition">
-              <option v-for="pos in positions" :value="position_name" required>{{ pos.position_name }}</option>
-            </select>
+            <input type="text" class="form-control" v-model="assignmentForm.position" id="inputPosition">
           </div>
           <div class="col-md-4">
             <label for="inputStatus" class="form-label">Status*</label>
-            <select class="form-select" v-model="assignmentForm.assign_status" id="inputStatus">
-              <option v-for="stat in status" :value="status_name" required>{{ stat.status_name }}</option>
-            </select>
+            <input type="text" class="form-control" v-model="assignmentForm.assign_status" id="inputStatus">
           </div>
         
           <div class="col-1">
