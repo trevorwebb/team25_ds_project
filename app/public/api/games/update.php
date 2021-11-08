@@ -33,13 +33,15 @@ $db = DbConnection::getConnection();
 $stmt = $db->prepare(
   'UPDATE GAMES SET 
     game_level = ?,
-    game_date = ?
+    game_date = ?,
+    game_location = ?
   WHERE game_ID = ?'
 );
 
 $stmt->execute([
   $_POST['game_level'],
   $_POST['game_date'],
+  $_POST['game_location'],
   $_POST['game_ID']
 ]);
 // Get auto-generated PK from DB
