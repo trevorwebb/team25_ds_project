@@ -3,7 +3,7 @@ Create database if not exists ref;
 use ref;
 
 create table if not exists REFEREES (
- id varchar(8),
+ id int AUTO_INCREMENT,
  first_name varchar(20) NOT NULL,
  last_name varchar(20) NOT NULL,
  date_of_birth date NOT NULL,
@@ -18,7 +18,7 @@ Create table if not exists LEVELS (
 
 
  Create table if not exists GAMES (
- game_ID varchar(8),
+ game_ID int AUTO_INCREMENT,
  game_level varchar(25) NOT NULL,
  game_date date NOT NULL,
  primary key (game_ID)
@@ -26,7 +26,7 @@ Create table if not exists LEVELS (
  
  
  create table if not exists ASSIGNMENT (
- assign_ID varchar(8),
+ assign_ID int AUTO_INCREMENT,
  game_ID varchar(8) references games(game_ID), 
  ref_ID varchar(8) references referees(id),
  position varchar(20) NOT NULL,
@@ -51,7 +51,8 @@ insert into GAMES values
 insert into ASSIGNMENT values
    ('1000','101','001','Head','Assigned'),
    ('2000','102','002','Head','Tentative'),
-   ('2001','102','003','Assistant','Unassigned'),
+   ('2001','102','','Assistant','Unassigned'),
+   ('2003','101','','Assistant','Unassigned'),
    ('2002','102','001','Assistant','Tentative');
 insert into LEVELS values
    ('Low', '1'),
