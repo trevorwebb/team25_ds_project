@@ -12,6 +12,7 @@ const ref = {
             assignmentForm: {},
             daterangeassignments: [],
             reportForm: {},
+            futureAssignments : [],
         }
     },
 
@@ -28,6 +29,24 @@ const ref = {
             ageDate = new Date(ageDifMs);
             return Math.abs(ageDate.getUTCFullYear() - 1970);
         },
+        parseGames(){
+            let csvContent = "data:text/csv;charset=utf-8,";
+            csvContent += Object.keys(this.futureAssignments[0]).join(",")+"\r\n";         
+            this.futureAssignments.forEach(function(rowObj) {       
+            let row = Object.values(rowObj).join(",");          
+            csvContent += row + "\r\n";  
+            });
+            
+            var encodedUri = encodeURI(csvContent);         
+            var link = document.createElement("a");
+            
+            link.setAttribute("href", encodedUri);       
+            link.setAttribute("download", "Future_Games.csv");
+            
+            document.body.appendChild(link); 
+            link.click();     
+            },
+
         parseDateGames(){   
             let csvContent = "data:text/csv;charset=utf-8,";
             csvContent += Object.keys(this.daterangeassignments[0]).join(",")+"\r\n";       
@@ -46,6 +65,18 @@ const ref = {
             link.click();            
             },
         
+        fetchFutureGame() {
+            fetch('/api/report/future_game.php')
+            .then( response => response.json() )
+            .then( (responseJson) => {
+                console.log(responseJson);
+                this.futureAssignments = responseJson;
+            })
+            .catch( (err) => {
+                console.error(err);
+            })
+        },
+
         selectReferee(r) {
             if (r == this.selectedRef) {
                 return;
@@ -441,6 +472,7 @@ const ref = {
         this.fetchRefData();
         this.fetchGameData();
         this.fetchAssignmentData();
+        this.fetchFutureGame();
     }
 }
   
