@@ -28,7 +28,7 @@ Create table if not exists LEVELS (
  
  create table if not exists ASSIGNMENT (
  assign_ID int AUTO_INCREMENT,
- game_ID varchar(8) references games(game_ID), 
+ game_ID varchar(8) references games(game_ID) NOT NULL, 
  ref_ID varchar(8) references referees(id),
  position varchar(20) NOT NULL,
  assign_status varchar(15) NOT NULL,
@@ -40,21 +40,26 @@ Create table if not exists LEVELS (
     position_name varchar(25)
  );
 
+ create table if not exists ASSIGN_STATUS (
+    status_ID varchar(25),
+    status_name varchar(25)
+ );
+
 insert into REFEREES values
-   ('001','Bipin','Prabhakar','1990-08-17',99),
-   ('002','Tom','Gregory','1995-04-23',87),
-   ('003','Alan','Dennis','1988-06-15',79);
+   ('1','Bipin','Prabhakar','1990-08-17',7),
+   ('2','Tom','Gregory','1995-04-23',9),
+   ('3','Alan','Dennis','1988-06-15',5);
    
 insert into GAMES values
-   ('101','Low','2021-12-23 20:00:00', 'Lancaster'),
-   ('102','Normal','2022-01-15 21:00:00', 'Aurora');
+   ('1','Low','2021-12-23 20:00:00', 'Lancaster'),
+   ('2','Normal','2022-01-15 21:00:00', 'Aurora');
    
 insert into ASSIGNMENT values
-   ('1000','101','001','Head','Assigned'),
-   ('2000','102','002','Head','Tentative'),
-   ('2001','102','','Assistant','Unassigned'),
-   ('2003','101','','Assistant','Unassigned'),
-   ('2002','102','001','Assistant','Tentative');
+   ('1','1','1','Head','Assigned'),
+   ('2','2','2','Head','Tentative'),
+   ('3','2','','Assistant','Unassigned'),
+   ('4','1','','Assistant','Unassigned'),
+   ('5','2','1','Assistant','Tentative');
 insert into LEVELS values
    ('Low', '1'),
    ('Normal', '3'),
@@ -62,8 +67,11 @@ insert into LEVELS values
 
 insert into POSITIONS values
    ('1','Head Referee'),
-   ('2', 'Assistant 1'),
-   ('3', 'Assistant 2'),
+   ('2', 'Linesman 1'),
+   ('3', 'Linesman 2'),
    ('4', 'Fourth Official');
 
-
+insert into ASSIGN_STATUS values
+   ('1','Assigned'),
+   ('2','Tentative'),
+   ('3','Unassigned');
