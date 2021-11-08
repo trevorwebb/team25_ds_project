@@ -396,7 +396,7 @@ const ref = {
             this.assignmentForm = Object.assign({}, this.selectedAssignment);
         },
         fetchFutureGameData(){
-        fetch('/api/report/future_game_report')
+        fetch('/api/report/future_game.php')
         .then( response => response.json() )
         .then( (responseJson) => {
             console.log(responseJson);

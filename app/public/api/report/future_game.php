@@ -7,6 +7,7 @@ $db = DbConnection::getConnection();
 // Step 2: Create & run the query
 $sql = 'SELECT 
 game_date,
+game_location,
 assign_status
 FROM ASSIGNMENT 
 INNER JOIN GAMES ON ASSIGNMENT.game_id = GAMES.game_id
@@ -20,6 +21,7 @@ if (isset($_GET['futureAssignments'])) {
   // This is an example of a parameterized query
   $sql = 'SELECT 
   game_date,
+  game_location,
   assign_status
 FROM ASSIGNMENT 
 INNER JOIN GAMES ON ASSIGNMENT.game_id = GAMES.game_id

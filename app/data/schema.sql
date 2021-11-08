@@ -28,7 +28,7 @@ Create table if not exists LEVELS (
  
  create table if not exists ASSIGNMENT (
  assign_ID int AUTO_INCREMENT,
- game_ID varchar(8) references games(game_ID) NOT NULL, 
+ game_ID varchar(8) references games(game_ID), 
  ref_ID varchar(8) references referees(id),
  position varchar(20) NOT NULL,
  assign_status varchar(15) NOT NULL,

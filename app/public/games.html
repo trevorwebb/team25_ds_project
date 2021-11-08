@@ -64,6 +64,7 @@
                   <th scope="col">Game ID</th>
                   <th scope="col">Game Level</th>
                   <th scope="col">Game Date</th>
+                  <th scope="col">Game Location</th>
                   <th scope="col">Edit/Delete</th>
                 </tr>
               </thead>
@@ -72,6 +73,7 @@
                         <td>{{ game.game_ID }}</td>
                         <td>{{ game.game_level }}</td>
                         <td>{{ game.game_date }}</td>
+                        <td>{{ game.game_location }}</td>
                         <td>
                           <button type="button" v-on:click="handleEditGame(game)" class="btn btn-outline-secondary btn-sm">Edit</button>
                           <button type="button" v-on:click="postDeleteGame(game)" class="btn btn-outline-secondary btn-sm">Delete</button>
@@ -97,6 +99,10 @@
           <div class="col-md-4">
             <label for="game_date" class="form-label">Game Date</label>
             <input type="text" class="form-control" v-model="gameForm.game_date" id="game_date">
+          </div>
+          <div class="col-md-4">
+            <label for="game_location" class="form-label">Game Location</label>
+            <input type="text" class="form-control" v-model="gameForm.game_location" id="game_location">
           </div>
           
           <div class="col-1">
