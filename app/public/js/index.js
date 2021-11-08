@@ -395,12 +395,24 @@ const ref = {
             this.selectedAssignment = assignment;
             this.assignmentForm = Object.assign({}, this.selectedAssignment);
         },
+        fetchFutureGameData(){
+        fetch('/api/report/future_game_report')
+        .then( response => response.json() )
+        .then( (responseJson) => {
+            console.log(responseJson);
+            this.futuregames = responseJson;
+        })
+        .catch( (err) => {
+            console.error(err);
+        })
+    }
     },
     
     created() {
         this.fetchRefData();
         this.fetchGameData(); 
         this.fetchAssignmentData();
+        this.fetchFutureGameData();
     }
 }
   
