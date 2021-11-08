@@ -21,7 +21,12 @@ const ref = {
     },
 
     methods: {
-       
+        calculateAge(birthday) {
+            ageDifMs = Date.now() - new Date(birthday).getTime();
+            ageDate = new Date(ageDifMs);
+            return Math.abs(ageDate.getUTCFullYear() - 1970);
+        },
+        
         selectReferee(r) {
             if (r == this.selectedRef) {
                 return;
