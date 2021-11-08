@@ -95,12 +95,16 @@
           <div class="col-md-2">
           </div>
           <div class="col-md-4">
-            <label for="inputGame" class="form-label">Game</label>
-            <input type="text" class="form-control" v-model="assignmentForm.game_ID" id="inputGame">
+            <label for="inputGame" class="form-label">Game ID*</label>
+            <select class="form-select" v-model="assignmentForm.game_ID" id="inputGame">
+              <option v-for="game in games" :value="game_ID" required>{{ game.game_ID }}</option>
+            </select>
           </div>
           <div class="col-md-4">
             <label for="inputRef" class="form-label">Referee</label>
-            <input type="text" class="form-control" v-model="assignmentForm.ref_ID" id="inputRef">
+            <select class="form-select" v-model="assignmentForm.ref_ID" id="inputRef">
+              <option v-for="ref in referees" :value="id" required>{{ ref.id }}></option>
+            </select>
           </div>
           <div class="col-md-4">
             <label for="inputPosition" class="form-label">Position</label>
