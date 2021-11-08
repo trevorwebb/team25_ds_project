@@ -30,6 +30,7 @@ $stmt = $db->prepare(
         -- ref_rating,
         game_level,
         game_date,
+        game_location,
         assign_status
     FROM ASSIGNMENT 
     INNER JOIN GAMES ON ASSIGNMENT.game_id = GAMES.game_id
@@ -51,12 +52,13 @@ $stmt->execute([
  $assignments = $stmt->fetchAll();
  if (isset($_GET['format']) && $_GET['format']=='csv') {
     header('Content-Type: text/csv');
-    echo "game_level, game_date, assign_status\r\n";
+    echo "game_level, game_date, game_location, assign_status\r\n";
     // echo "ref_name,date_of_birth,ref_rating, game_level, game_date, assign_status\r\n";
   
     foreach($assignments as $a) {
       echo "\"".$a['game_level']. "\","
                 .$a['game_date'] . ","
+                .$a['game_location'] . ","
                 .$a['assign_status']."\r\n";
     }
     // echo "\"".$a['ref_name']. "\","

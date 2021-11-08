@@ -74,7 +74,8 @@
               <thead>
                 <tr>
                   <th scope="col">Game Level</th>
-                  <th scope="col">Game Date</th>
+                  <th scope="col">Game Time</th>
+                  <th scope="col">Game Location</th>
                   <th scope="col">Assign Status</th>
                 </tr>
               </thead>
@@ -82,6 +83,7 @@
                     <tr v-for="d in daterangeassignments">
                         <td>{{ d.game_level }}</td>
                         <td>{{ d.game_date }}</td>
+                        <td>{{ d.game_location }}</td>
                         <td>{{ d.assign_status }}</td>
                      </tr>
                 </tbody>
