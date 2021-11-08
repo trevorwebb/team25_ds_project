@@ -10,6 +10,8 @@ const ref = {
             selectedAssignment: null,
             assignments: [],
             assignmentForm: {},
+            positions : [],
+            status : []
         }
     },
 
@@ -405,7 +407,31 @@ const ref = {
         .catch( (err) => {
             console.error(err);
         })
-    }
+        },
+
+        fetchPositionData(){
+        fetch('/api/positions/index.php')
+        .then( response => response.json() )
+        .then( (responseJson) => {
+            console.log(responseJson);
+            this.positions = responseJson;
+        })
+        .catch( (err) => {
+            console.error(err);
+        })
+        },
+
+        fetchStatusData(){
+            fetch('/api/assignmentStatus/index.php')
+            .then( response => response.json() )
+            .then( (responseJson) => {
+                console.log(responseJson);
+                this.status = responseJson;
+            })
+            .catch( (err) => {
+                console.error(err);
+            })
+            },
     },
     
     created() {
@@ -413,6 +439,8 @@ const ref = {
         this.fetchGameData(); 
         this.fetchAssignmentData();
         this.fetchFutureGameData();
+        this.fetchPositionData();
+        this.fetchStatusData();
     }
 }
   
