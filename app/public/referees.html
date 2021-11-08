@@ -80,15 +80,15 @@
             </tbody>
         </table>
         <div class="row g-3 justify-content-center">
-          <div class="col-md-2">
-          </div>
+          <!-- <div class="col-md-2">
+          </div> -->
           <div class="col-md-8">
             <h4>{{ selectedRef === null ? "Add " : "Edit " }} Referee</h4>
           </div>
           <div class="col-md-2">
           </div>
         </div>
-        <form class="row g-3 justify-content-center"  v-on:submit.prevent="postRef">
+        <form v-on:submit.prevent="postRef">
           <div class="col-md-2">
           </div>
           <div class="col-md-4">
@@ -130,6 +130,8 @@
 
 </body>
 
-
+<footer>
+  <img src="img/Kelley_Logo.png" class="rounded mx-auto d-block" alt="kelley_logo" width="150">
+</footer>
 
 </html>

@@ -25,9 +25,9 @@ $db = DbConnection::getConnection();
 // Note the use of parameterized statements to avoid injection
 $stmt = $db->prepare(
         'SELECT 
-        concat(first_name," ",last_name) as ref_name,
-        date_of_birth,
-        ref_rating,
+        -- concat(first_name," ",last_name) as ref_name,
+        -- date_of_birth,
+        -- ref_rating,
         game_level,
         game_date,
         assign_status
@@ -51,17 +51,20 @@ $stmt->execute([
  $assignments = $stmt->fetchAll();
  if (isset($_GET['format']) && $_GET['format']=='csv') {
     header('Content-Type: text/csv');
-    echo "ref_name,date_of_birth,ref_rating, game_level, game_date, assign_status\r\n";
+    echo "game_level, game_date, assign_status\r\n";
+    // echo "ref_name,date_of_birth,ref_rating, game_level, game_date, assign_status\r\n";
   
     foreach($assignments as $a) {
-      echo "\"".$a['ref_name']. "\","
-                .$a['date_of_birth'] . ","
-                .$a['ref_rating'] . ","
-                .$a['game_level'] . ","
+      echo "\"".$a['game_level']. "\","
                 .$a['game_date'] . ","
                 .$a['assign_status']."\r\n";
     }
-  
+    // echo "\"".$a['ref_name']. "\","
+    // .$a['date_of_birth'] . ","
+    // .$a['ref_rating'] . ","
+    // .$a['game_level'] . ","
+    // .$a['game_date'] . ","
+    // .$a['assign_status']."\r\n";
   } 
   else {
 

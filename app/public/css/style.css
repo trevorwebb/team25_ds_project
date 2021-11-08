@@ -128,3 +128,18 @@ td {
   padding: 5px;
   text-align: center;
 }
+
+
+.referee {
+  margin: 10px 2px;
+  padding: 4px;
+  border: 1px solid darkred;
+  background-color: #EAEAEA;
+}
+
+.game {
+  margin: 10px 2px;
+  padding: 4px;
+  border: 1px solid darkred;
+  background-color: #EAEAEA;
+}
