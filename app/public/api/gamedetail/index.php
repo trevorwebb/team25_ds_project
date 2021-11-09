@@ -14,6 +14,7 @@ $sql = 'SELECT
 GAMES.game_ID, 
 GAMES.game_level, 
 GAMES.game_date, 
+GAMES.game_location, 
 REFEREES.id from GAMES
 inner join ASSIGNMENT on ASSIGNMENT.game_ID = GAMES.game_ID
 inner join REFEREES on REFEREES.id = ASSIGNMENT.ref_ID
