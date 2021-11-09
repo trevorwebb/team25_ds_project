@@ -32,7 +32,7 @@ $db = DbConnection::getConnection();
 // Note the use parameterized statements to avoid injection
 $stmt = $db->prepare(
   'INSERT INTO GAMES (game_ID, game_level, game_date, game_location)
-  VALUES (?, ?, ?)'
+  VALUES (?, ?, ?,?)'
 );
 
 $stmt->execute([
