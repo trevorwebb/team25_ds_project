@@ -12,8 +12,8 @@ assign_status
 FROM ASSIGNMENT 
 INNER JOIN GAMES ON ASSIGNMENT.game_id = GAMES.game_id
 Where
-assign_status = "Unassigned"
-AND
+-- assign_status = "Unassigned"
+-- AND
 GAMES.game_date >= (SELECT CURDATE() as today FROM DUAL)';
 $vars = [];
 
