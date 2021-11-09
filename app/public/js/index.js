@@ -40,7 +40,8 @@ const ref = {
         
         fetchGameData2(r) {
             console.log("Fetching game data for ", r);
-            fetch('/api/gamedetail/?ref=' + r.id)
+            fetch('/api/gamedetail/?referee=' + r.id)
+            
             .then( response => response.json() )
             .then( (responseJson) => {
                 console.log(responseJson);
